@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "5b1f4ad8-16e8-4cc7-b1b5-209f88001cda",
+		"name": "WarungTepat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fill In Items",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cart\": {\n        \"user_id\": \"1\",\n        \"cart_id\": \"21\"\n    },\n    \"product\": {\n        \"product_id\": \"1\",\n        \"product_name\": \"Lifebuoy Body Wash Sabun Mandi Cair Refill Total 10 850Ml\",\n        \"product_price\": \"34500\",\n        \"product_desc\": \"Kemasan pouch 900ml\",\n        \"product_image\": \"https://assets.klikindomaret.com/products/20081452/20081452_1.jpg\",\n        \"product_qty\": \"100\"\n    },\n    \"product_qty\":\"3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/fill-cart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"fill-cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cart",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "1",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/create-cart",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"create-cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Checkout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"transaction\": {\n    \"user_id\": \"1\",\n    \"transaction_date\": \"Today\",\n    \"ref_code\": \"ABC123\",\n    \"transaction_amount\": \"1000000\",\n    \"transaction_status\": \"Cart Created\",\n    \"cart\": {\n      \"cart_id\": \"20\",\n      \"user_id\": \"1\",\n      \"cart_status\": \"Active\"\n    }\n  },\n  \"products\": [\n    {\n      \"product\": {\n        \"product_id\": 15,\n        \"product_name\": \"Royco Ayam \",\n        \"product_price\": 5100,\n        \"product_desc\": \"Kemasan 9gr total 12pcs\",\n        \"product_image\": \"https://images.tokopedia.net/img/cache/500-square/product-1/2019/7/12/218070086/218070086_4fdb28f7-c9db-42e4-a15c-14f9c5d8eef6_1024_1024.jpg\",\n        \"product_qty\": 430\n      },\n      \"qty_taken\": \"5\"\n    },\n    {\n      \"product\": {\n        \"product_id\": 14,\n        \"product_name\": \"Tepung Terigu Segitia Biru\",\n        \"product_price\": 10000,\n        \"product_desc\": \"Kemasan isi 1kg\",\n        \"product_image\": \"https://dtq2i388ejbah.cloudfront.net/images/imagedensity/Tepung-Terigu-Segitiga-Biru-1kg-R_desktop_home_2x.jpg\",\n        \"product_qty\": 220\n      },\n      \"qty_taken\": \"5\"\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/checkout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"checkout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cart Content",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/in-cart?cart_id=21",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"in-cart"
+					],
+					"query": [
+						{
+							"key": "cart_id",
+							"value": "21"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/transaction?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"transaction"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

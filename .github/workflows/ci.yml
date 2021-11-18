@@ -1,0 +1,29 @@
+name: CI
+
+on: 
+  push:
+   branches: [ main ]
+  pull_request:
+   branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Maven Central Repository
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      # Add to Heroku
+      - name: Remote to heroku
+        run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME}}.git
+      
+      # Deploy to Heroku
+      - name: Filter shallow
+        run: git filter-branch -- --all
+      - name: Deploy to Heroku
+        run: git push heroku main --force
